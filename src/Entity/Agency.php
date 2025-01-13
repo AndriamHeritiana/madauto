@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AgencyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AgencyRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -12,24 +13,31 @@ class Agency
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['agency:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['agency:read'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['agency:read'])]
     private ?string $address = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['agency:read'])]
     private ?string $city = null;
 
     #[ORM\Column(length: 10)]
+    #[Groups(['agency:read'])]
     private ?string $postalCode = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups(['agency:read'])]
     private ?string $phone = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['agency:read'])]
     private ?string $email = null;
 
     #[ORM\Column(type: 'decimal', precision: 10, scale: 8, nullable: true)]
