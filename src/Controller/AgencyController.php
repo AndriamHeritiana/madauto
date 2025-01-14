@@ -25,4 +25,16 @@ class AgencyController extends AbstractController
         
         return new JsonResponse($jsonAgencies, 200, [], true);
     }
+    #[Route('/api/agencies/{id}', name: 'api_get_agency', methods: ['GET'])]
+    public function getAgency(
+        Agency $agency,
+        SerializerInterface $serializer
+    ): JsonResponse
+    {
+        $jsonAgency = $serializer->serialize($agency, 'json', [
+            'groups' => ['agency:read']
+        ]);
+
+        return new JsonResponse($jsonAgency, 200, [], true);
+    }
 }
